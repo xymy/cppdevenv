@@ -1,0 +1,17 @@
+/.cache/
+/.tmp/
+
+/build/
+/dist/
+
+/docs/build/
+/docs/dist/
+
+__pycache__/
+*.py[cod]
+
+# macOS
+.DS_Store
+
+# Windows
+[Dd]esktop.ini
