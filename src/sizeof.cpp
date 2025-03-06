@@ -1,4 +1,7 @@
+#include <atomic>
 #include <cstddef>
+#include <memory>
+#include <memory_resource>
 
 #include <fmt/color.h>
 #include <fmt/core.h>
@@ -60,6 +63,17 @@ void sizeof_stddef() {
   PRINT_SIZEOF(std::byte);
 }
 
+void sizeof_memory() {
+  PRINT_SIZEOF(std::unique_ptr<int>);
+  PRINT_SIZEOF(std::shared_ptr<int>);
+  PRINT_SIZEOF(std::weak_ptr<int>);
+  PRINT_SIZEOF(std::atomic<std::shared_ptr<int>>);
+  PRINT_SIZEOF(std::atomic<std::weak_ptr<int>>);
+  PRINT_SIZEOF(std::enable_shared_from_this<int>);
+  PRINT_SIZEOF(std::allocator<std::byte>);
+  PRINT_SIZEOF(std::pmr::polymorphic_allocator<std::byte>);
+}
+
 int main() {
   PRINT_RULE("sizeof_integral");
   sizeof_integral();
@@ -67,5 +81,7 @@ int main() {
   sizeof_floating_point();
   PRINT_RULE("sizeof_stddef");
   sizeof_stddef();
+  PRINT_RULE("sizeof_memory");
+  sizeof_memory();
   return 0;
 }
