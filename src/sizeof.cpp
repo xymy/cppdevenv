@@ -1,7 +1,12 @@
+#include <any>
 #include <atomic>
 #include <cstddef>
 #include <memory>
 #include <memory_resource>
+#include <optional>
+#include <string>
+#include <string_view>
+#include <variant>
 
 #include <fmt/color.h>
 #include <fmt/core.h>
@@ -32,9 +37,7 @@ void sizeof_integral() {
   PRINT_SIZEOF(bool);
   PRINT_SIZEOF(char);
   PRINT_SIZEOF(wchar_t);
-#ifdef __cpp_char8_t
   PRINT_SIZEOF(char8_t);
-#endif
   PRINT_SIZEOF(char16_t);
   PRINT_SIZEOF(char32_t);
   PRINT_SIZEOF(signed char);
@@ -64,14 +67,27 @@ void sizeof_stddef() {
 }
 
 void sizeof_memory() {
-  PRINT_SIZEOF(std::unique_ptr<int>);
-  PRINT_SIZEOF(std::shared_ptr<int>);
-  PRINT_SIZEOF(std::weak_ptr<int>);
-  PRINT_SIZEOF(std::atomic<std::shared_ptr<int>>);
-  PRINT_SIZEOF(std::atomic<std::weak_ptr<int>>);
-  PRINT_SIZEOF(std::enable_shared_from_this<int>);
+  PRINT_SIZEOF(std::unique_ptr<std::uintptr_t>);
+  PRINT_SIZEOF(std::shared_ptr<std::uintptr_t>);
+  PRINT_SIZEOF(std::weak_ptr<std::uintptr_t>);
+  PRINT_SIZEOF(std::atomic<std::shared_ptr<std::uintptr_t>>);
+  PRINT_SIZEOF(std::atomic<std::weak_ptr<std::uintptr_t>>);
+  PRINT_SIZEOF(std::enable_shared_from_this<std::uintptr_t>);
   PRINT_SIZEOF(std::allocator<std::byte>);
   PRINT_SIZEOF(std::pmr::polymorphic_allocator<std::byte>);
+}
+
+void sizeof_type_wrapper() {
+  PRINT_SIZEOF(std::optional<std::uintptr_t>);
+  PRINT_SIZEOF(std::variant<std::uintptr_t>);
+  PRINT_SIZEOF(std::any);
+}
+
+void sizeof_string() {
+  PRINT_SIZEOF(std::string);
+  PRINT_SIZEOF(std::wstring);
+  PRINT_SIZEOF(std::string_view);
+  PRINT_SIZEOF(std::wstring_view);
 }
 
 int main() {
@@ -83,5 +99,9 @@ int main() {
   sizeof_stddef();
   PRINT_RULE("sizeof_memory");
   sizeof_memory();
+  PRINT_RULE("sizeof_type_wrapper");
+  sizeof_type_wrapper();
+  PRINT_RULE("sizeof_string");
+  sizeof_string();
   return 0;
 }
