@@ -1,6 +1,12 @@
 cmake_minimum_required(VERSION 3.24)
 
-project(cppdevenv LANGUAGES CXX)
+project(
+  cppdevenv
+  VERSION      0.0
+  DESCRIPTION  "Template project for C++"
+  HOMEPAGE_URL https://github.com/xymy/cppdevenv
+  LANGUAGES    CXX
+)
 
 if(PROJECT_SOURCE_DIR STREQUAL PROJECT_BINARY_DIR)
   message(FATAL_ERROR "In-source builds are not allowed.")
