@@ -26,6 +26,4 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(fmt)
 
-add_executable(sizeof "src/sizeof.cpp")
-
-target_link_libraries(sizeof fmt::fmt)
+add_subdirectory("src")
