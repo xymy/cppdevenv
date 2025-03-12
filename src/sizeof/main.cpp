@@ -8,8 +8,8 @@
 #include <string_view>
 #include <variant>
 
+#include <fmt/base.h>
 #include <fmt/color.h>
-#include <fmt/core.h>
 
 constexpr auto rule_style =
     fmt::emphasis::bold | fmt::fg(fmt::terminal_color::green);
