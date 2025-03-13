@@ -1,3 +1,6 @@
+#include <fmt/base.h>
+#include <fmt/color.h>
+
 #include <any>
 #include <atomic>
 #include <cstddef>
@@ -8,15 +11,12 @@
 #include <string_view>
 #include <variant>
 
-#include <fmt/base.h>
-#include <fmt/color.h>
-
 constexpr auto rule_style =
     fmt::emphasis::bold | fmt::fg(fmt::terminal_color::green);
 
-#define PRINT_RULE(TITLE)                                                      \
-  do {                                                                         \
-    fmt::print("{:-^60}\n", fmt::styled(" " TITLE " ", rule_style));           \
+#define PRINT_RULE(TITLE)                                            \
+  do {                                                               \
+    fmt::print("{:-^60}\n", fmt::styled(" " TITLE " ", rule_style)); \
   } while (0)
 
 constexpr auto func_style =
@@ -26,11 +26,11 @@ constexpr auto expr_style =
 constexpr auto value_style =
     fmt::emphasis::bold | fmt::fg(fmt::terminal_color::cyan);
 
-#define PRINT_SIZEOF(EXPR)                                                     \
-  do {                                                                         \
-    fmt::print("{}({}) = {}\n", fmt::styled("sizeof", func_style),             \
-               fmt::styled(#EXPR, expr_style),                                 \
-               fmt::styled(sizeof(EXPR), value_style));                        \
+#define PRINT_SIZEOF(EXPR)                                         \
+  do {                                                             \
+    fmt::print("{}({}) = {}\n", fmt::styled("sizeof", func_style), \
+               fmt::styled(#EXPR, expr_style),                     \
+               fmt::styled(sizeof(EXPR), value_style));            \
   } while (0)
 
 void sizeof_integral() {
