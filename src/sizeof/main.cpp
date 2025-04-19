@@ -23,14 +23,14 @@ constexpr auto func_style =
     fmt::emphasis::bold | fmt::fg(fmt::terminal_color::blue);
 constexpr auto expr_style =
     fmt::emphasis::bold | fmt::fg(fmt::terminal_color::magenta);
-constexpr auto value_style =
+constexpr auto number_style =
     fmt::emphasis::bold | fmt::fg(fmt::terminal_color::cyan);
 
 #define PRINT_SIZEOF(EXPR)                                         \
   do {                                                             \
     fmt::print("{}({}) = {}\n", fmt::styled("sizeof", func_style), \
                fmt::styled(#EXPR, expr_style),                     \
-               fmt::styled(sizeof(EXPR), value_style));            \
+               fmt::styled(sizeof(EXPR), number_style));           \
   } while (0)
 
 void sizeof_integral() {
