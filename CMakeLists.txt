@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.24)
 
 project(
   cppdevenv
-  VERSION      1.0
+  VERSION      1.1
   DESCRIPTION  "Template project for C++"
   HOMEPAGE_URL https://github.com/xymy/cppdevenv
   LANGUAGES    CXX
